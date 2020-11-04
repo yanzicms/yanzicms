@@ -1,10 +1,11 @@
 {
     "name": "yanzicms/yanzicms",
     "type": "project",
-    "description": "Open Source Content Management. It is the mobile-ready and user-friendly way to build your website.",
+    "description": "Open Source Content Management. Yanzicms is the mobile-ready and user-friendly way to build your website.",
     "keywords": [
         "cms",
-        "yanzi"
+        "yanzi",
+        "yanzicms"
     ],
     "license": "MIT",
     "homepage": "http://www.yanzicms.com",
