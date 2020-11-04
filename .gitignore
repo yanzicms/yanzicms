@@ -7,3 +7,7 @@ composer.lock
 /public/data/*
 /public/template/*
 !/public/template/yanzi/
+/app/config/db.php
+/app/config/yanzicms.php
+/app/model
+/app/plugin
