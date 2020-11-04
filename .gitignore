@@ -1,0 +1,9 @@
+/vendor
+composer.lock
+/runtime/cache/*
+/runtime/log/*
+/runtime/solve/*
+/public/avatar
+/public/data/*
+/public/template/*
+!/public/template/yanzi/
