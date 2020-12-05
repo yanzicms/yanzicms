@@ -1,0 +1,39 @@
+<div class="m-5 clearfix"></div>
+<div class="fixed-bottom"><a class="text-light" href="http://www.yanzicms.com">yanzicms</a></div>
+<nav class="navbar fixed-bottom navbar-expand-lg navbar-light bg-light">
+    <div class="btn-group dropup">
+        <button type="button" id="yanzistart" class="btn btn-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-brightness-alt-high mr-2" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" d="M5.041 10.5h5.918a3 3 0 0 0-5.918 0zM4 11a4 4 0 1 1 8 0 .5.5 0 0 1-.5.5h-7A.5.5 0 0 1 4 11zm4-8a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 3zm8 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 11a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.414a.5.5 0 1 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zM4.464 7.464a.5.5 0 0 1-.707 0L2.343 6.05a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707z"/>
+            </svg>{=lang('Start')}
+        </button>
+        <div class="dropdown-menu" id="yanzimenu">
+            {include menu}
+        </div>
+    </div>
+    <div class="collapse navbar-collapse d-none d-lg-block">
+        <ul class="navbar-nav mr-auto">
+            {include often}
+        </ul>
+    </div>
+    <div class="btn-group dropup">
+        <button type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-list mr-2" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" d="M2.5 11.5A.5.5 0 0 1 3 11h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4A.5.5 0 0 1 3 7h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4A.5.5 0 0 1 3 3h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
+            </svg>{user}
+        </button>
+        <div class="dropdown-menu dropdown-menu-right">
+            {include my}
+        </div>
+    </div>
+</nav>
+<div class="d-none" id="continue">{=lang('Continue')}</div>
+<div class="d-none" id="cancel">{=lang('Cancel')}</div>
+<div class="d-none" id="error">{=lang('Error')}</div>
+<div class="d-none" id="ok">{=lang('Ok')}</div>
+<div class="d-none" id="domain">{domain}</div>
+<script src="{domain}frontend/js/bootstrap.bundle.min.js"></script>
+<script src="{domain}frontend/js/jquery-confirm.min.js"></script>
+<script src="{domain}frontend/js/yanzi/yanzicms.js"></script>
+</body>
+</html>

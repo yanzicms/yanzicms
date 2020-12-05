@@ -1,0 +1,1 @@
+/*** Created by A.J on 2020/11/4.*/$(document).ready(function(){$.post("latestversion", {},function(data){$("#yanzilatestversion").html(data);});});

@@ -1,0 +1,62 @@
+{include headers}
+<link rel="stylesheet" href="{domain}frontend/gijgo/css/gijgo.min.css">
+<link rel="stylesheet" href="{domain}frontend/css/croppic.css">
+<div class="mb-3">
+    <small class="form-text text-muted">{=lang('Items marked with * are required')}</small>
+</div>
+<form>
+    <div class="form-group">
+        <label for="nickname">{=lang('Nickname')} *</label>
+        <input type="text" class="form-control" value="{yanzi.nickname}" name="nickname" id="nickname">
+    </div>
+    <div class="form-group">
+        <label for="email">{=lang('E-mail')}</label>
+        <input type="text" class="form-control" value="{yanzi.email}" name="email" id="email">
+    </div>
+    <div class="form-group">
+        <label for="personalurl">{=lang('Personal URL')}</label>
+        <input type="text" class="form-control" value="{yanzi.url}" name="url" id="personalurl">
+        <small class="form-text text-muted">{=lang('Link format')}: http://www.yanzicms.com</small>
+    </div>
+    <div class="form-group">
+        <label for="gender">{=lang('Gender')}</label>
+        <select class="custom-select" name="gender" id="gender">
+            <option value="0"{if yanzi.gender == 0} selected{endif}>{=lang('Keep secret')}</option>
+            <option value="1"{if yanzi.gender == 1} selected{endif}>{=lang('Male')}</option>
+            <option value="2"{if yanzi.gender == 2} selected{endif}>{=lang('Female')}</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="birthday">{=lang('Birthday')}</label>
+        <input type="text" class="form-control datetimeinput" value="{yanzi.birthday}" id="birthday" name="birthday">
+    </div>
+    <div class="form-group">
+        <label>{=lang('Avatar')}</label>
+        <div id="croppic">
+            {if yanzi.avatar != ''}
+            <img class="croppedImg" src="{domain}{yanzi.avatar}">
+            <div class="cropControls cropControlsUpload">
+                <i class="cropControlRemoveCroppedImage"></i>
+            </div>
+            {endif}
+        </div>
+        <button type="button" class="btn btn-outline-info px-5 ml-1" id="uploadavatarButton">{=lang('Click to upload avatar')}</button>
+    </div>
+    <div class="form-group">
+        <label for="signature">{=lang('Signature')}</label>
+        <textarea class="form-control" rows="6" id="signature" name="signature">{yanzi.signature}</textarea>
+    </div>
+    <div class="text-center">
+        <button type="button" class="btn btn-outline-info submit">{=lang('Submit')}
+            <div class="spinner-border spinner-border-sm text-secondary d-none">
+                <span class="sr-only">Loading...</span>
+            </div>
+        </button>
+    </div>
+</form>
+<div id="uploadavatar" class="d-none">{uploadavatar}</div>
+<script src="{domain}frontend/js/gijgo.min.js"></script>
+<script src="{domain}frontend/js/messages.zh-cn.min.js"></script>
+<script src="{domain}frontend/js/croppic.min.js"></script>
+<script src="{domain}frontend/js/yanzi/user/personalInformation.js"></script>
+{include footers}

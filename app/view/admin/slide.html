@@ -1,0 +1,78 @@
+{include headers}
+<div class="mb-3">
+    <a class="btn btn-outline-info btn-sm mr-3" href="{=url('admin/addslidegroup')}">
+        {=lang('Add slideshow group')}
+    </a>
+    <a class="btn btn-outline-info btn-sm mr-3" href="{=url('admin/slidegroup')}">
+        {=lang('Slideshow group')}
+    </a>
+    <a class="btn btn-outline-info btn-sm" href="{=url('admin/addslide')}">
+        {=lang('Add slideshow')}
+    </a>
+    <a class="btn btn-outline-info btn-sm float-right" href="{=url('admin/slide')}">
+        {=lang('Refresh')}
+    </a>
+</div>
+<form class="form-inline">
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th scope="col">
+                {=lang('Sort')}
+                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-sort-numeric-down" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M4 2a.5.5 0 0 1 .5.5v11a.5.5 0 0 1-1 0v-11A.5.5 0 0 1 4 2z"/>
+                    <path fill-rule="evenodd" d="M6.354 11.146a.5.5 0 0 1 0 .708l-2 2a.5.5 0 0 1-.708 0l-2-2a.5.5 0 0 1 .708-.708L4 12.793l1.646-1.647a.5.5 0 0 1 .708 0z"/>
+                    <path d="M12.438 7V1.668H11.39l-1.262.906v.969l1.21-.86h.052V7h1.046zm-2.84 5.82c.054.621.625 1.278 1.761 1.278 1.422 0 2.145-.98 2.145-2.848 0-2.05-.973-2.688-2.063-2.688-1.125 0-1.972.688-1.972 1.836 0 1.145.808 1.758 1.719 1.758.69 0 1.113-.351 1.261-.742h.059c.031 1.027-.309 1.856-1.133 1.856-.43 0-.715-.227-.773-.45H9.598zm2.757-2.43c0 .637-.43.973-.933.973-.516 0-.934-.34-.934-.98 0-.625.407-1 .926-1 .543 0 .941.375.941 1.008z"/>
+                </svg>
+                <span class="badge badge-pill badge-success" data-toggle="popover" data-trigger="hover" data-placement="right" data-content="{=lang('The small number is in the front and the big one is in the back')}">?</span>
+            </th>
+            <th scope="col">{=lang('Name')}</th>
+            <th scope="col">{=lang('Slide')}</th>
+            <th scope="col">{=lang('Slideshow group')}</th>
+            <th scope="col">{=lang('Whether to show')}</th>
+            <th scope="col">{=lang('Modify')}</th>
+            <th scope="col">{=lang('Delete')}</th>
+        </tr>
+        </thead>
+        <tbody>
+        {loop name="data" item="item" key="k"}
+        <tr>
+            <td class="align-middle">
+                <div class="form-group">
+                    <input type="text" data-id="{item.id}" data-val="{item.sort}" value="{item.sort}" class="form-control form-control-sm yanzisort" style="width: 85px">
+                </div>
+            </td>
+            <td class="align-middle">{item.name}</td>
+            <td class="align-middle"><img src="{domain}{item.image}" width="200"></td>
+            <td class="align-middle">{item.groupname}</td>
+            <td class="align-middle">
+                <div class="custom-control custom-switch">
+                    <input type="checkbox" class="custom-control-input yanzistatus" data-id="{item.id}" id="status_{item.id}"{if item.status == 1} checked{endif}>
+                    <label class="custom-control-label" for="status_{item.id}"></label>
+                </div>
+            </td>
+            <td class="align-middle">
+                <a href="{=url('admin/slidemodify')}?id={item.id}">
+                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-wrench" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M.102 2.223A3.004 3.004 0 0 0 3.78 5.897l6.341 6.252A3.003 3.003 0 0 0 13 16a3 3 0 1 0-.851-5.878L5.897 3.781A3.004 3.004 0 0 0 2.223.1l2.141 2.142L4 4l-1.757.364L.102 2.223zm13.37 9.019L13 11l-.471.242-.529.026-.287.445-.445.287-.026.529L11 13l.242.471.026.529.445.287.287.445.529.026L13 15l.471-.242.529-.026.287-.445.445-.287.026-.529L15 13l-.242-.471-.026-.529-.445-.287-.287-.445-.529-.026z"/>
+                    </svg>
+                </a>
+            </td>
+            <td class="align-middle">
+                <a href="#!" class="yanzidel" data-id="{item.id}">
+                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-trash" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                        <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+                    </svg>
+                </a>
+                <div class="spinner-border spinner-border-sm text-info d-none">
+                    <span class="sr-only">Loading...</span>
+                </div>
+            </td>
+        </tr>
+        {endloop}
+        </tbody>
+    </table>
+</form>
+<script src="{domain}frontend/js/yanzi/slide.js"></script>
+{include footers}

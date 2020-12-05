@@ -1,0 +1,63 @@
+{include headers}
+<div class="mb-3">
+    <small class="form-text text-muted">{=lang('Items marked with * are required')}</small>
+</div>
+<form>
+    <div class="form-group">
+        <label for="name">{=lang('Name')} *</label>
+        <input type="text" class="form-control" name="name" id="name">
+    </div>
+    <div class="form-group">
+        <label for="alias">{=lang('Alias')} *</label>
+        <input type="text" class="form-control" name="alias" id="alias">
+        <small class="form-text text-muted">{=lang('The alias must start with a letter and can only use letters, numbers and underscores')}</small>
+    </div>
+    <div class="form-group">
+        <label for="upperlevel">{=lang('Upper level')} *</label>
+        <select class="custom-select" name="upperlevel" id="upperlevel">
+            <option value="0">{=lang('Top attribution')}</option>
+            {loop name="allAttribution" item="item" key="k"}
+            <option value="{item.id}">{item.level}{item.name}</option>
+            {endloop}
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="menu">{=lang('Whether as a navigation menu')}</label>
+        <select class="custom-select" name="menu" id="menu">
+            <option value="1">{=lang('As a navigation menu')}</option>
+            <option value="0">{=lang('Not used for navigation menu')}</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="fortemplate">{=lang('Is it used for template')}</label>
+        <select class="custom-select" name="fortemplate" id="fortemplate">
+            <option value="0">{=lang('Not used in template')}</option>
+            <option value="1">{=lang('For template')}</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="icon">{=lang('Icon code')}</label>
+        <input type="text" class="form-control" name="icon" id="icon">
+    </div>
+    <div class="form-group">
+        <label for="template">{=lang('Template')}</label>
+        <select class="custom-select" name="template" id="template">
+            <option value="">{=lang('Please select a template')}</option>
+            {loop name="templates" item="item" key="k"}
+            <option value="{item}">{item}</option>
+            {endloop}
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="description">{=lang('Description')}</label>
+        <textarea class="form-control" name="description" id="description" rows="4"></textarea>
+    </div>
+    <div class="text-center">
+        <button type="button" class="btn btn-outline-info submit">{=lang('Submit')}
+            <div class="spinner-border spinner-border-sm text-secondary d-none">
+                <span class="sr-only">Loading...</span>
+            </div>
+        </button>
+    </div>
+</form>
+{include footers}

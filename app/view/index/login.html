@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>{=lang('User login')}</title>
+    <link rel="stylesheet" href="{domain}frontend/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{domain}frontend/css/jquery-confirm.min.css">
+</head>
+<body>
+<div class="container">
+    <div class="row justify-content-center vh-100">
+        <div class="col-sm-10 col-md-8 col-lg-6 align-self-center">
+            <h5 class="text-center">{=lang('User login')}</h5>
+            <form id="form">
+                <div class="form-group">
+                    <label>{=lang('Username')}</label>
+                    <input type="text" class="form-control" name="username">
+                </div>
+                <div class="form-group">
+                    <label>{=lang('Password')}</label>
+                    <input type="password" class="form-control" name="pwd">
+                </div>
+                {if captcha==1}
+                <div class="form-group">
+                    <label>{=lang('Captcha')}</label>
+                    <div id="captcha">{=captcha()}</div>
+                    <input type="text" class="form-control" name="captcha">
+                    <small class="form-text text-muted">{=lang('If you can\'t see clearly, you can click the picture to refresh')}</small>
+                </div>
+                {endif}
+                <div class="form-group form-check">
+                    <input type="checkbox" class="form-check-input" name="remember" id="exampleCheck1">
+                    <label class="form-check-label" for="exampleCheck1">{=lang('Remember me')}</label>
+                </div>
+                <div class="text-center">
+                    <button type="button" id="submit" class="btn btn-light" data-understood="{=lang('Understood')}" data-notice="{=lang('Notice')}">{=lang('Log in')}
+                        <div class="spinner-border spinner-border-sm text-info d-none">
+                            <span class="sr-only">Loading...</span>
+                        </div>
+                    </button>
+                </div>
+                <div class="alert alert-light mt-3" role="alert">
+                    {=lang('You can also choose:')}<a href="{=url('/')}" class="alert-link ml-2">{=lang('Visit Home')}</a>
+                    <a href="{=url('signup')}" class="alert-link ml-3">{=lang('Sign up')}</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script src="{domain}frontend/js/jquery.min.js"></script>
+<script src="{domain}frontend/js/jquery-confirm.min.js"></script>
+<script src="{domain}frontend/js/yanzi/login.js"></script>
+</body>
+</html>

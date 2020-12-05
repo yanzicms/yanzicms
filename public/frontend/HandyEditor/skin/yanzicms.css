@@ -1,0 +1,59 @@
+.HandyEditor{
+    border : solid 1px #c6e6dd;
+    border-radius: 6px;
+    -moz-border-radius: 6px;
+    -webkit-border-radius: 6px;
+    box-shadow: 0 1px 3px rgba(198,230,221,0.6);
+    -moz-box-shadow: 0 1px 3px rgba(198,230,221,0.6);
+    -webkit-box-shadow: 0 1px 3px rgba(198,230,221,0.6);
+}
+.HandyEditor_menu{
+    border-bottom: solid 1px #c6e6dd;
+    padding: 0px 5px;
+    background-color: #fdfdfd;
+    border-radius: 6px 6px 0px 0px;
+    -moz-border-radius: 6px 6px 0px 0px;
+    -webkit-border-radius: 6px 6px 0px 0px;
+}
+.HandyEditor_menu_item,.HandyEditor_menu_item:visited{
+    color: #53b097;
+    background-color: #fdfdfd;
+    border-radius: 6px;
+    -moz-border-radius: 6px;
+    -webkit-border-radius: 6px;
+    box-shadow: none;
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    text-shadow: none;
+    border-bottom: none;
+    padding: 5px 5px;
+    margin: 10px 1px;
+}
+.HandyEditor_menu_item:hover{
+    background-color: #53b097;
+    color: #FFFFFF;
+}
+.HandyEditor_menu_item:active{
+    background-color: #53b097;
+    color: #FFFFFF;
+}
+.HandyEditor_menu_item_valid{
+    background-color: #53b097;
+    color: #FFFFFF;
+}
+.HandyEditor_menu_item_invalid,
+.HandyEditor_menu_item_invalid:hover{
+    background-color: #e8edec;
+    color: #f8fbfa;
+}
+.HandyEditor_menu_gap{
+    border-color: #ddd;
+    margin: 10px 4px;
+}
+.HandyEditor_editor{
+    border : none;
+    background-color: #fff;
+    border-bottom-right-radius: 6px;
+    -moz-border-bottom-right-radius: 6px;
+    -webkit-border-bottom-right-radius: 6px;
+}

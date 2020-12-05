@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Yanzicms {=lang('installation')}</title>
+    <link rel="icon" href="{domain}frontend/img/favicon.ico">
+    <link rel="stylesheet" href="{domain}frontend/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{domain}frontend/css/jquery-confirm.min.css">
+</head>
+<body>
+<div class="container">
+    <div class="row justify-content-center mt-5">
+        <div class="mt-5">
+            <div>
+                <img src="{domain}frontend/img/yanzi.png">
+            </div>
+            <div>
+                <div class="mt-5 text-center" id="progress">
+                    <div class="mt-4 mb-3" id="prompt">
+                        {=lang('Testing environment, please wait ...')}
+                    </div>
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                </div>
+                <div class="mt-5 text-center d-none" id="failed">
+                    <div class="mt-4 mb-3">
+                        {=lang('The test failed, please check the following questions')}
+                    </div>
+                    <div class="alert alert-warning m-3 text-left" id="details"></div>
+                    <div class="mb-2">
+                        {=lang('Please eliminate all problems and continue')}
+                    </div>
+                    <div>
+                        <a class="btn btn-outline-secondary" id="detailContinue" href="index.html" role="button">{=lang('Continue')}</a>
+                    </div>
+                </div>
+                <div class="mt-5 text-center d-none" id="continue">
+                    <div class="mt-4 mb-3">
+                        {=lang('Environmental testing passed')}
+                    </div>
+                    <div>
+                        <button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#installModal">{=lang('Continue')}</button>
+                    </div>
+                </div>
+                <div class="mt-5 text-center d-none" id="complete">
+                    <div class="mt-4 mb-3">
+                        {=lang('The installation is complete')}
+                    </div>
+                    <div>
+                        <a class="btn btn-outline-secondary mr-3" href="{=url('/')}" role="button">{=lang('Home')}</a>
+                        <a class="btn btn-outline-secondary" href="{=url('login')}" role="button">{=lang('Log in')}</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="installModal" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg  modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="installModalLabel">{=lang('Fill in the database and founder information')}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="dbinfo">
+                    <div class="form-group">
+                        <label>{=lang('The database server')}：</label>
+                        <input type="text" class="form-control" name="host" value="localhost" required="required">
+                        <small class="form-text text-muted">{=lang('Database server address, usually localhost')}</small>
+                    </div>
+                    <div class="form-group">
+                        <label>{=lang('The database port')}：</label>
+                        <input type="text" class="form-control" name="port" value="3306" required="required">
+                        <small class="form-text text-muted">{=lang('The database server port, typically 3306')}</small>
+                    </div>
+                    <div class="form-group">
+                        <label>{=lang('The database user name')}：</label>
+                        <input type="text" class="form-control" name="user" value="root" required="required">
+                    </div>
+                    <div class="form-group">
+                        <label>{=lang('The database password')}：</label>
+                        <input type="password" class="form-control" name="password" value="">
+                    </div>
+                    <div class="form-group">
+                        <label>{=lang('The database name')}：</label>
+                        <input type="text" class="form-control" name="name" value="yanzi" required="required">
+                        <small class="form-text text-muted">{=lang('If you use an existing database, replace it with the actual database name')}</small>
+                    </div>
+                    <div class="form-group">
+                        <label>{=lang('Database table prefix')}：</label>
+                        <input type="text" class="form-control" name="prefix" value="yanzi_" required="required">
+                    </div>
+                    <div class="form-group">
+                        <label>{=lang('Site title')}：</label>
+                        <input type="text" class="form-control" name="title" value="Yanzi CMS">
+                        <small class="form-text text-muted">{=lang('You can modify the site name at any time in the background')}</small>
+                    </div><br>
+                    <div class="form-group">
+                        <label>{=lang('The administrator account')}：</label>
+                        <input type="text" class="form-control" name="admin" value="admin" required="required">
+                        <small class="form-text text-muted">{=lang('It is recommended to change to another administrator account, do not use the default account')}</small>
+                    </div>
+                    <div class="form-group">
+                        <label>{=lang('The administrator password')}：</label>
+                        <input type="password" class="form-control" name="pwd" value="" required="required">
+                        <small class="form-text text-muted">{=lang('The administrator password can not be shorter than 8 characters')}</small>
+                    </div>
+                    <div class="form-group">
+                        <label>{=lang('Confirm password')}：</label>
+                        <input type="password" class="form-control" name="repwd" value="" required="required">
+                        <small class="form-text text-muted">{=lang('Please repeat the above password to prevent input errors')}</small>
+                    </div>
+                    <div class="form-group">
+                        <label>{=lang('E-mail')}：</label>
+                        <input type="email" class="form-control" name="email" value="" required="required">
+                    </div>
+                    <div class="custom-control custom-checkbox mb-3">
+                        <input type="checkbox" class="custom-control-input" id="structure" name="structure" checked>
+                        <label class="custom-control-label" for="structure">{=lang('Installation initial structure')}</label>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="submit" class="btn btn-outline-info m-auto" data-understood="{=lang('Understood')}" data-notice="{=lang('Notice')}" data-prompt="{=lang('Installing system, please wait ...')}" data-url="{=url('create/creating')}">{=lang('Submit')}
+                    <div class="spinner-border spinner-border-sm text-secondary d-none">
+                        <span class="sr-only">Loading...</span>
+                    </div>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="{domain}frontend/js/jquery.min.js"></script>
+<script src="{domain}frontend/js/bootstrap.min.js"></script>
+<script src="{domain}frontend/js/jquery-confirm.min.js"></script>
+<script src="{domain}frontend/js/yanzi/install.js"></script>
+</body>
+</html>

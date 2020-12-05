@@ -1,0 +1,17 @@
+.eqwh{
+    width: 130px;
+    height: 130px;
+    border: 1px #2cabbf solid;
+    background-color: #f2f2f2;
+    color: #2cabbf;
+}
+.eqwh:hover{
+    cursor: pointer;
+    border-color: #bfb62c;
+    background-color: #fefefe;
+    color: #666666;
+}
+a,a:hover{text-decoration: none}
+#yanzimenu{
+    overflow-y: auto
+}

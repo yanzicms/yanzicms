@@ -1,0 +1,107 @@
+{include headers}
+<div class="mb-3">
+    <small class="form-text text-muted">{=lang('Items marked with * are required')}</small>
+</div>
+<form>
+    <div class="form-group">
+        <label for="title">{=lang('Site name')} *</label>
+        <input type="text" class="form-control" value="{dispose.title}" name="title" id="title">
+    </div>
+    <div class="form-group">
+        <label for="subtitle">{=lang('Site subtitle')}</label>
+        <input type="text" class="form-control" value="{dispose.subtitle}" name="subtitle" id="subtitle">
+    </div>
+    <div class="form-group">
+        <label for="sitedomain">{=lang('Website domain')} *</label>
+        <input type="text" class="form-control" value="{dispose.domain}" name="domain" id="sitedomain">
+    </div>
+    <div class="form-group">
+        <label for="keyword">{=lang('Site keywords')}</label>
+        <input type="text" class="form-control" value="{dispose.keyword}" name="keyword" id="keyword">
+    </div>
+    <div class="form-group">
+        <label for="description">{=lang('Site description')}</label>
+        <textarea class="form-control" name="description" id="description" rows="4">{dispose.description}</textarea>
+    </div>
+    <div class="form-group">
+        <label for="filtername">{=lang('Username filtering')}</label>
+        <input type="text" class="form-control" value="{dispose.filtername}" name="filtername" id="filtername">
+        <small class="form-text text-muted">{=lang('You can set usernames that are not allowed to register, separated by commas ","')}</small>
+    </div>
+    <div class="form-group">
+        <label for="captcha">{=lang('Is a verification code required for user login')}</label>
+        <select class="custom-select" name="captcha" id="captcha">
+            <option value="1"{if dispose.captcha == 1} selected{endif}>{=lang('Verification code required')}</option>
+            <option value="0"{if dispose.captcha == 0} selected{endif}>{=lang('No verification code required')}</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="rewrite">{=lang('Pseudo-static')}</label>
+        <select class="custom-select" name="rewrite" id="rewrite">
+            <option value="0"{if dispose.rewrite == 0} selected{endif}>{=lang('Do not use pseudo static')}</option>
+            <option value="1"{if dispose.rewrite == 1} selected{endif}>{=lang('Enable pseudo static')}</option>
+        </select>
+        <small class="form-text text-muted">{=lang('Before enabling pseudo-static, please make sure the server has supported')}</small>
+    </div>
+    <div class="form-group">
+        <label for="logo">{=lang('Website Logo')}</label>
+        <div id="logodiv" class="d-none">
+            <img id="logoimg" src="" height="100">
+            <a href="#!" id="logodel">
+                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-trash" fill="currentColor" xmlns="http://www.w3.org/2000/svg" data-toggle="popover" data-trigger="hover" data-placement="right" data-content="{=lang('Delete')}">
+                    <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                    <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+                </svg>
+                <div class="spinner-border spinner-border-sm text-info d-none" role="status">
+                    <span class="sr-only">Loading...</span>
+                </div>
+            </a>
+        </div>
+        <div class="custom-file">
+            <input type="hidden" name="logo" id="logo" value="{dispose.logo}">
+            <input type="file" class="custom-file-input" name="file" id="logofile">
+            <label class="custom-file-label" for="logo" data-browse="{=lang('Browse')}">{=lang('Choose file')}</label>
+        </div>
+        <small class="form-text text-muted">{=lang('Upload image file')}, {=lang('Only upload picture in "jpg,gif,png" format')}</small>
+    </div>
+    <div class="form-group">
+        <label for="icon">{=lang('Website icon')}</label>
+        <div id="icondiv" class="d-none">
+            <img id="iconimg" src="" height="32">
+            <a href="#!" id="icondel">
+                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-trash" fill="currentColor" xmlns="http://www.w3.org/2000/svg" data-toggle="popover" data-trigger="hover" data-placement="right" data-content="{=lang('Delete')}">
+                    <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                    <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+                </svg>
+                <div class="spinner-border spinner-border-sm text-info d-none" role="status">
+                    <span class="sr-only">Loading...</span>
+                </div>
+            </a>
+        </div>
+        <div class="custom-file">
+            <input type="hidden" name="icon" id="icon" value="{dispose.icon}">
+            <input type="file" class="custom-file-input" name="file" id="iconfile">
+            <label class="custom-file-label" for="icon" data-browse="{=lang('Browse')}">{=lang('Choose file')}</label>
+        </div>
+        <small class="form-text text-muted">{=lang('Upload ico icon file')}, {=lang('Only upload pictures in "ico" format')}</small>
+    </div>
+    <div class="form-group">
+        <label for="record">{=lang('Record number')}</label>
+        <input type="text" class="form-control" value="{dispose.record}" name="record" id="record">
+    </div>
+    <div class="form-group">
+        <label for="statistics">{=lang('Statistical code')}</label>
+        <textarea class="form-control" name="statistics" id="statistics" rows="10">{dispose.statistics}</textarea>
+    </div>
+    <div class="text-center">
+        <button type="button" class="btn btn-outline-info submit">{=lang('Submit')}
+            <div class="spinner-border spinner-border-sm text-secondary d-none">
+                <span class="sr-only">Loading...</span>
+            </div>
+        </button>
+    </div>
+</form>
+<div id="uploadfailed" class="d-none">{=lang('Upload failed')}</div>
+<script src="{domain}frontend/js/jqueryupload.js"></script>
+<script src="{domain}frontend/js/yanzi/setup.js"></script>
+{include footers}

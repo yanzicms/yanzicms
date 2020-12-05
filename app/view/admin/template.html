@@ -1,0 +1,72 @@
+{include headers}
+<div class="mb-3">
+    <a class="btn btn-outline-info btn-sm" id="uploadtemplate" href="#!">
+        {=lang('Upload template')}
+    </a>
+    <a class="btn btn-outline-info btn-sm float-right" href="{=url('admin/template')}">
+        {=lang('Refresh')}
+    </a>
+</div>
+<div class="form-group" id="templatediv" style="display: none">
+    <div class="custom-file">
+        <input type="file" class="custom-file-input" name="file" id="templatefile">
+        <label class="custom-file-label" for="templatefile" data-browse="{=lang('Browse')}">{=lang('Choose file')}</label>
+    </div>
+    <small class="form-text text-muted d-none">{=lang('Uploading...')}</small>
+</div>
+<form class="form-inline">
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th scope="col">{=lang('Template')}</th>
+            <th scope="col">{=lang('Screenshot')}</th>
+            <th scope="col">{=lang('Name')}</th>
+            <th scope="col">{=lang('Description')}</th>
+            <th scope="col">{=lang('Author')}</th>
+            <th scope="col">{=lang('Version')}</th>
+            <th scope="col">{=lang('Whether to open')}</th>
+            <th scope="col">{=lang('Delete')}</th>
+        </tr>
+        </thead>
+        <tbody>
+        {loop name="data" item="item" key="k"}
+        <tr>
+            <td class="align-middle">{item.template}</td>
+            <td class="align-middle">{if item.screenshot != ''}<img src="{domain}{item.screenshot}" height="100">{endif}</td>
+            <td class="align-middle">{item.name}</td>
+            <td class="align-middle">{item.description}</td>
+            <td class="align-middle">{item.author}</td>
+            <td class="align-middle">{item.version}</td>
+            <td class="align-middle">
+                <div class="custom-control custom-switch">
+                    <input type="checkbox" class="custom-control-input yanziopened" data-template="{item.template}" id="opened_{item.template}"{if item.opened == 1} checked{endif}>
+                    <label class="custom-control-label" for="opened_{item.template}"></label>
+                </div>
+            </td>
+            <td class="align-middle">
+                {if item.opened == 0}
+                <a href="#!" class="yanzidel" data-template="{item.template}">
+                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-trash" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                        <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+                    </svg>
+                </a>
+                <div class="spinner-border spinner-border-sm text-info d-none">
+                    <span class="sr-only">Loading...</span>
+                </div>
+                {else}
+                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-trash text-secondary" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                    <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+                </svg>
+                {endif}
+            </td>
+        </tr>
+        {endloop}
+        </tbody>
+    </table>
+</form>
+<div id="choosefile" class="d-none">{=lang('Choose file')}</div>
+<script src="{domain}frontend/js/jqueryupload.js"></script>
+<script src="{domain}frontend/js/yanzi/template.js"></script>
+{include footers}

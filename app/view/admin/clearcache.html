@@ -1,0 +1,14 @@
+{include headers}
+<div class="mb-3">
+    <small class="form-text text-muted">{=lang('Click the button below to clear the cache')}</small>
+</div>
+<form>
+    <div class="text-center mt-5">
+        <button type="button" class="btn btn-outline-info submit">{=lang('Clear cache')}
+            <div class="spinner-border spinner-border-sm text-secondary d-none">
+                <span class="sr-only">Loading...</span>
+            </div>
+        </button>
+    </div>
+</form>
+{include footers}

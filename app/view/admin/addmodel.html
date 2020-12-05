@@ -1,0 +1,136 @@
+{include headers}
+<div class="mb-3">
+    <small class="form-text text-muted">{=lang('Items marked with * are required')}</small>
+</div>
+<form>
+    <div class="form-group">
+        <label for="name">{=lang('Name')} *</label>
+        <input type="text" class="form-control" name="name" id="name">
+    </div>
+    <div class="form-group">
+        <label for="alias">{=lang('Alias')} *</label>
+        <input type="text" class="form-control" name="alias" id="alias">
+        <small class="form-text text-muted">{=lang('The alias must start with a letter and can only use letters, numbers and underscores')} ( {=lang('The alias cannot be modified after setting')} )</small>
+    </div>
+    <div class="form-group">
+        <label for="contribution">{=lang('Whether to use for submission')}</label>
+        <select class="custom-select" name="contribution" id="contribution">
+            <option value="0">{=lang('Not for submission')}</option>
+            <option value="1">{=lang('For submission')}</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="description">{=lang('Description')}</label>
+        <textarea class="form-control" name="description" id="description" rows="4"></textarea>
+    </div>
+    <div class="form-group">
+        <label for="alias">{=lang('Model parts')} *</label>
+        <input type="hidden" class="form-control" name="parts" id="parts">
+    </div>
+    <div class="container-fluid border rounded" id="partsdiv">
+        <div class="row bg-light my-2 onepart">
+            <div class="col-12 col-md-3">
+                <div class="form-group">
+                    <label for="name">{=lang('Part name')} *</label>
+                    <input type="text" class="form-control partname">
+                </div>
+            </div>
+            <div class="col-12 col-md-3">
+                <div class="form-group">
+                    <label for="name">{=lang('Part alias')} *</label>
+                    <input type="text" class="form-control partalias">
+                </div>
+            </div>
+            <div class="col-12 col-md-3">
+                <div class="form-group">
+                    <label for="name">{=lang('Part type')} *</label>
+                    <select class="custom-select parttype">
+                        <option value="varchar">{=lang('Single line text')}</option>
+                        <option value="text">{=lang('Multiline text')}</option>
+                        <option value="int">{=lang('Integer')}</option>
+                        <option value="decimal">{=lang('Decimal')}</option>
+                        <option value="date">{=lang('Date')}</option>
+                        <option value="datetime">{=lang('Date and time')}</option>
+                        <option value="singlechoice">{=lang('Single choice')}</option>
+                        <option value="multiplechoice">{=lang('Multiple choice')}</option>
+                        <option value="multiplepictures">{=lang('Multiple pictures')}</option>
+                        <option value="video">{=lang('Video')}</option>
+                        <option value="annex">{=lang('Annex')}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-12 col-md-3">
+                <div class="form-group">
+                    <label for="name">{=lang('Default value or option')}</label>
+                    <button type="button" class="close float-right">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <input type="text" class="form-control defaults">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div>
+        <small class="form-text text-muted">{=lang('The alias must start with a letter and can only use letters, numbers and underscores')} ( {=lang('The alias cannot be modified after setting')} ), {=lang('Single selection or multiple selection, fill options in the default value box, and the options are separated by ","')}</small>
+    </div>
+    <div class="mt-2">
+        <button type="button" class="btn btn-outline-success" id="addparts">
+            {=lang('Add parts')}
+            <svg width="1.5em" height="1.5em" viewBox="0 0 16 16" class="bi bi-plus" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+            </svg>
+        </button>
+    </div>
+    <div class="text-center">
+        <button type="button" class="btn btn-outline-info submit">{=lang('Submit')}
+            <div class="spinner-border spinner-border-sm text-secondary d-none">
+                <span class="sr-only">Loading...</span>
+            </div>
+        </button>
+    </div>
+</form>
+<div class="d-none" id="partshide">
+    <div class="row bg-light my-2 onepart">
+        <div class="col-12 col-md-3">
+            <div class="form-group">
+                <label for="name">{=lang('Part name')} *</label>
+                <input type="text" class="form-control partname">
+            </div>
+        </div>
+        <div class="col-12 col-md-3">
+            <div class="form-group">
+                <label for="name">{=lang('Part alias')} *</label>
+                <input type="text" class="form-control partalias">
+            </div>
+        </div>
+        <div class="col-12 col-md-3">
+            <div class="form-group">
+                <label for="name">{=lang('Part type')} *</label>
+                <select class="custom-select parttype">
+                    <option value="varchar">{=lang('Single line text')}</option>
+                    <option value="text">{=lang('Multiline text')}</option>
+                    <option value="int">{=lang('Integer')}</option>
+                    <option value="decimal">{=lang('Decimal')}</option>
+                    <option value="date">{=lang('Date')}</option>
+                    <option value="datetime">{=lang('Date and time')}</option>
+                    <option value="singlechoice">{=lang('Single choice')}</option>
+                    <option value="multiplechoice">{=lang('Multiple choice')}</option>
+                    <option value="multiplepictures">{=lang('Multiple pictures')}</option>
+                    <option value="video">{=lang('Video')}</option>
+                    <option value="annex">{=lang('Annex')}</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-12 col-md-3">
+            <div class="form-group">
+                <label for="name">{=lang('Default value or option')}</label>
+                <button type="button" class="close float-right">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <input type="text" class="form-control defaults">
+            </div>
+        </div>
+    </div>
+</div>
+<script src="{domain}frontend/js/yanzi/addmodel.js"></script>
+{include footers}

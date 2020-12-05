@@ -1,0 +1,107 @@
+{include headers}
+<div class="mb-3">
+    <a class="btn btn-outline-info btn-sm" href="{=url('admin/contribution')}">
+        {=lang('Contributions without review')}
+    </a>
+    <a class="btn btn-outline-info btn-sm float-right" href="{=url('admin/reviewedcontribution')}">
+        {=lang('Refresh')}
+    </a>
+</div>
+<form class="form-inline">
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th scope="col">{=lang('Title')}</th>
+            <th scope="col">{=lang('Submission time')}</th>
+            <th scope="col">{=lang('Views')}</th>
+            <th scope="col">{=lang('Approve')}</th>
+            <th scope="col">{=lang('Top')}</th>
+            <th scope="col">{=lang('Recommend')}</th>
+            <th scope="col">{=lang('Modify')}</th>
+            <th scope="col">{=lang('Delete')}</th>
+        </tr>
+        </thead>
+        <tbody>
+        {loop name="data.items" item="item" key="k"}
+        <tr>
+            <td class="align-middle">
+                {if item.image != ""}<img src="{domain}{item.image}" style="max-height: 70px"> {endif}<a href="{item.href}" class="text-info" target="_blank">{item.title}</a>
+                <svg width="1.3em" height="1.3em" viewBox="0 0 16 16" class="bi bi-eye text-info viewcontribution" fill="currentColor" xmlns="http://www.w3.org/2000/svg" data-toggle="modal" data-target="#contributionModal" data-title="{item.title}" data-cid="{item.id}" style="cursor: pointer">
+                    <path fill-rule="evenodd" d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.134 13.134 0 0 0 1.66 2.043C4.12 11.332 5.88 12.5 8 12.5c2.12 0 3.879-1.168 5.168-2.457A13.134 13.134 0 0 0 14.828 8a13.133 13.133 0 0 0-1.66-2.043C11.879 4.668 10.119 3.5 8 3.5c-2.12 0-3.879 1.168-5.168 2.457A13.133 13.133 0 0 0 1.172 8z"/>
+                    <path fill-rule="evenodd" d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z"/>
+                </svg>
+            </td>
+            <td class="align-middle">{item.creation}</td>
+            <td class="align-middle">{item.view}</td>
+            <td class="align-middle">
+                <div class="custom-control custom-switch">
+                    <input type="checkbox" class="custom-control-input yanzistatus" data-id="{item.id}" id="status_{item.id}"{if item.status == 1} checked{endif}>
+                    <label class="custom-control-label" for="status_{item.id}"></label>
+                </div>
+            </td>
+            <td class="align-middle">
+                <div class="custom-control custom-switch">
+                    <input type="checkbox" class="custom-control-input yanzitop" data-id="{item.id}" id="top_{item.id}"{if item.top == 1} checked{endif}>
+                    <label class="custom-control-label" for="top_{item.id}"></label>
+                </div>
+            </td>
+            <td class="align-middle">
+                <div class="custom-control custom-switch">
+                    <input type="checkbox" class="custom-control-input yanzirecommend" data-id="{item.id}" id="recommend_{item.id}"{if item.recommend == 1} checked{endif}>
+                    <label class="custom-control-label" for="recommend_{item.id}"></label>
+                </div>
+            </td>
+            <td class="align-middle">
+                <a href="{=url('admin/contributionmodify')}?id={item.id}">
+                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-wrench" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M.102 2.223A3.004 3.004 0 0 0 3.78 5.897l6.341 6.252A3.003 3.003 0 0 0 13 16a3 3 0 1 0-.851-5.878L5.897 3.781A3.004 3.004 0 0 0 2.223.1l2.141 2.142L4 4l-1.757.364L.102 2.223zm13.37 9.019L13 11l-.471.242-.529.026-.287.445-.445.287-.026.529L11 13l.242.471.026.529.445.287.287.445.529.026L13 15l.471-.242.529-.026.287-.445.445-.287.026-.529L15 13l-.242-.471-.026-.529-.445-.287-.287-.445-.529-.026z"/>
+                    </svg>
+                </a>
+            </td>
+            <td class="align-middle">
+                <a href="#!" class="yanzidel" data-id="{item.id}">
+                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-trash" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                        <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+                    </svg>
+                </a>
+                <div class="spinner-border spinner-border-sm text-info d-none">
+                    <span class="sr-only">Loading...</span>
+                </div>
+            </td>
+        </tr>
+        {endloop}
+        </tbody>
+    </table>
+</form>
+<nav>
+    <ul class="pagination justify-content-center">
+        {data.pagesInner}
+    </ul>
+</nav>
+<div class="modal fade" id="contributionModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="contributionModalLabel"></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" id="contributionModalBody">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">{=lang('Close')}</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="loading" class="d-none">
+    <div class="d-flex justify-content-center">
+        <div class="spinner-border text-info" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+</div>
+<script src="{domain}frontend/js/yanzi/reviewedcontribution.js"></script>
+{include footers}

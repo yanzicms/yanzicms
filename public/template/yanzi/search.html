@@ -1,0 +1,99 @@
+{include header}
+{include breadcrumb}
+<div class="container">
+    <div class="row">
+        <div class="col-12 col-md-9">
+            {loop name="yanzi.items" item="item"}
+            <div class="card mb-3">
+                <div class="row no-gutters">
+                    {if item.image != ''}
+                    <div class="col-md-3">
+                        <img src="{domain}{item.image}" class="card-img">
+                    </div>
+                    {endif}
+                    <div class="{if item.image != ''}col-md-9{else}col-md-12{endif}">
+                        <div class="card-body">
+                            <h5 class="card-title"><a href="{item.href}" class="text-info">{item.title}</a></h5>
+                            <p class="card-text text-secondary"><small>摘要：{item.summary|substring(130)}</small></p>
+                            <p class="card-text"><small class="text-muted">
+                                {item.nickname}发布于：{item.creation.year}年{item.creation.month}月{item.creation.day}日{item.creation.hour}时{item.creation.minute}分{item.creation.second}秒
+                            </small></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {endloop}
+            <nav>
+                <ul class="pagination justify-content-center">
+                    {yanzi.pagesInner}
+                </ul>
+            </nav>
+        </div>
+        <div class="col-12 col-md-3 px-md-0">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header py-2 bg-darkblue">
+                            推荐资讯
+                        </div>
+                        <div class="card-body p-1">
+                            <div class="row no-gutters">
+                                {loop name="recommend" item="item" key="k" offset=0 len=4}
+                                <div class="col-6 mt-1">
+                                    <div class="card mx-1 border-0">
+                                        <a href="{item.href}" class="text-secondary h6" title="{item.title}"><img src="{domain}{item.image}" alt="{item.title}" class="card-img-top"{if isMobile != 1} height="134"{endif}></a>
+                                        <div class="card-body px-0">
+                                            <p class="card-text"><a class="text-info" href="{item.href}" title="{item.title}"><small>{item.title}</small></a></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                {endloop}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header py-2 bg-darkblue">
+                            最后更新
+                        </div>
+                        <div class="card-body p-2">
+                            <ul class="list-group">
+                                {loop name="latest" item="item" key="k" offset=0 len=10}
+                                <li class="list-group-item px-0 border-0 py-2 text-truncate">
+                                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-dot" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
+                                    </svg>
+                                    <a class="text-info" href="{item.href}" title="{item.title}">{item.title}</a>
+                                </li>
+                                {endloop}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header py-2 bg-darkblue">
+                            热门阅读
+                        </div>
+                        <div class="card-body p-2">
+                            <ul class="list-group">
+                                {loop name="popular" item="item" key="k" offset=0 len=10}
+                                <li class="list-group-item px-0 border-0 py-2 text-truncate">
+                                    <span class="badge {if k < 3}badge-danger{else}badge-light text-secondary{endif}">{=k+1}</span>
+                                    <a class="text-info" href="{item.href}" title="{item.title}">{item.title}</a>
+                                </li>
+                                {endloop}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{include footer}

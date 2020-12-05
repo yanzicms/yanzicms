@@ -1,0 +1,361 @@
+{include header}
+<div class="container">
+    <div class="row">
+        <div class="col-12 col-md-4 mt-3 order-2 order-md-first">
+            <div class="card">
+                <div class="card-header py-2 bg-darkblue">
+                    最近更新
+                </div>
+                <div class="card-body p-2">
+                    <ul class="list-group">
+                        {loop name="latest" item="item" key="k" offset=0 len=10}
+                        {if k + 1 == 10}
+                        <li class="list-group-item px-0 border-0 pt-3 pb-2">
+                            <div class="card border-0">
+                                <div class="row no-gutters">
+                                    {if item.image != ''}
+                                    <div class="col-md-3">
+                                        <img src="{domain}{item.image}" class="card-img"{if isMobile != 1} height="80"{endif}>
+                                    </div>
+                                    {endif}
+                                    <div class="{if item.image != ''}col-md-9{else}col-md-12{endif}">
+                                        <div class="card-body p-1">
+                                            <h6 class="text-truncate"><a class="text-info" href="{item.href}" title="{item.title}">{item.title}</a></h6>
+                                            <p class="card-text text-secondary">{item.summary|substring(30)}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        {else}
+                        <li class="list-group-item px-0 border-0 py-2 text-truncate">
+                            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-dot" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
+                            </svg>
+                            <a class="text-info" href="{item.href}" title="{item.title}">{item.title}</a>
+                            {if k < 3}
+                            <span class="badge badge-danger badge-pill">新</span>
+                            {endif}
+                        </li>
+                        {endif}
+                        {endloop}
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-4 mt-3 px-md-0 order-first order-md-2">
+            {exist slide.slide1}
+            <div id="carousel" class="carousel slide" data-ride="carousel">
+                <ol class="carousel-indicators">
+                    {loop name="slide.slide1" item="item" key="k"}
+                    <li data-target="#carousel" data-slide-to="{k}"{if k == 0} class="active"{endif}></li>
+                    {endloop}
+                </ol>
+                <div class="carousel-inner">
+                    {loop name="slide.slide1" item="item" key="k"}
+                    <div class="carousel-item{if k == 0} active{endif}">
+                        <a href="{item.link}">
+                            <img src="{domain}{item.image}" class="d-block w-100" alt="{item.name}">
+                        </a>
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5>{item.name}</h5>
+                            <p>{item.description}</p>
+                        </div>
+                    </div>
+                    {endloop}
+                </div>
+            </div>
+            {endexist}
+            {exist firstSingle}
+            <div class="card mt-3">
+                <div class="card-header text-center text-truncate">
+                    <a class="text-info" href="{firstSingle.href}" title="{firstSingle.title}">{firstSingle.title}</a>
+                </div>
+                <div class="card-body">
+                    <p class="card-text text-secondary">{firstSingle.summary|substring(110)}</p>
+                    <div class="row">
+                        {loop name="single" item="item" key="k" offset=1 len=2}
+                        <div class="col-12 col-md-6 text-center text-truncate">
+                            <a href="{item.href}" class="text-info">{item.title}</a>
+                        </div>
+                        {endloop}
+                    </div>
+                </div>
+            </div>
+            {endexist}
+        </div>
+        <div class="col-12 col-md-4 mt-3 order-last">
+            <div class="card">
+                <div class="card-header py-2 bg-darkblue">
+                    推荐阅读
+                </div>
+                <div class="card-body py-0">
+                    <ul class="list-group list-group-flush">
+                        {loop name="recommend" item="item" key="k" offset=0 len=5}
+                        <li class="list-group-item px-0">
+                            <div class="text-truncate">
+                                <a class="text-info font-weight-bold" href="{item.href}">{item.title}</a>
+                            </div>
+                            <div class="text-secondary">
+                                {item.summary|substring(37)}
+                            </div>
+                        </li>
+                        {endloop}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row no-gutters mt-3">
+        {exist ad.homebanner}
+        {if ad.homebanner.code != ''}
+        <div class="col">{ad.homebanner.code}</div>
+        {elseif ad.homebanner.image != ''}
+        <div class="col">
+            <a href="{ad.homebanner.href}" target="_blank"><img class="img-fluid" src="{domain}{ad.homebanner.image}"></a>
+        </div>
+        {else}
+        <div class="col text-center p-4 font-weight-bold_ text-light h4 bg-info">
+            燕子，优秀的开源免费CMS（MIT license）
+        </div>
+        {endif}
+        {endexist}
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-12 col-md-3 mt-3">
+            <div class="card">
+                <div class="card-header py-2 bg-darkblue">
+                    分类信息
+                </div>
+                <div class="card-body p-2">
+                    <ul class="list-group">
+                        {exist yanzicms.category}
+                        {loop name="yanzicms.category" item="item" key="k" offset=0 len=10}
+                        <li class="list-group-item px-0 border-0 py-2 text-truncate">
+                            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-dot" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
+                            </svg>
+                            <a class="text-info" href="{item.href}" title="{item.title}">{item.title}</a>
+                        </li>
+                        {endloop}
+                        {endexist}
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-6 mt-3 px-md-0">
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link active text-info" id="news-tab" data-toggle="tab" href="#news" role="tab" aria-controls="news" aria-selected="true">新闻</a>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link text-info" id="photoalbum-tab" data-toggle="tab" href="#photoalbum" role="tab" aria-controls="photoalbum" aria-selected="false">相册</a>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link text-info" id="video-tab" data-toggle="tab" href="#video" role="tab" aria-controls="video" aria-selected="false">视频</a>
+                </li>
+            </ul>
+            <div class="tab-content" id="myTabContent">
+                <div class="tab-pane fade show active" id="news" role="tabpanel" aria-labelledby="news-tab">
+                    <div class="row no-gutters">
+                        {exist yanzicms.news}
+                        {loop name="yanzicms.news" item="item" key="k" offset=0 len=6}
+                        <div class="col-12 col-md-4 mt-2">
+                            <div class="card mx-1">
+                                <a href="{item.href}" class="text-secondary h6" title="{item.title}"><img src="{domain}{item.image}" alt="{item.title}" class="card-img-top"{if isMobile != 1} height="134"{endif}></a>
+                                <div class="card-body">
+                                    <p class="card-text text-truncate"><a class="text-info" href="{item.href}" title="{item.title}">{item.title}</a></p>
+                                </div>
+                            </div>
+                        </div>
+                        {endloop}
+                        {endexist}
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="photoalbum" role="tabpanel" aria-labelledby="photoalbum-tab">
+                    <div class="row no-gutters">
+                        {exist yanzicms.photoalbum}
+                        {loop name="yanzicms.photoalbum" item="item" key="k" offset=0 len=6}
+                        <div class="col-12 col-md-4 mt-2">
+                            <div class="card mx-1">
+                                <a href="{item.href}" class="text-secondary h6" title="{item.title}"><img src="{domain}{item.image}" alt="{item.title}" class="card-img-top"{if isMobile != 1} height="134"{endif}></a>
+                                <div class="card-body">
+                                    <p class="card-text text-truncate"><a class="text-info" href="{item.href}" title="{item.title}">{item.title}</a></p>
+                                </div>
+                            </div>
+                        </div>
+                        {endloop}
+                        {endexist}
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="video" role="tabpanel" aria-labelledby="video-tab">
+                    <div class="row no-gutters">
+                        {exist yanzicms.video}
+                        {loop name="yanzicms.video" item="item" key="k" offset=0 len=6}
+                        <div class="col-12 col-md-4 mt-2">
+                            <div class="card mx-1">
+                                <a href="{item.href}" class="text-secondary h6" title="{item.title}"><img src="{domain}{item.image}" alt="{item.title}" class="card-img-top"{if isMobile != 1} height="134"{endif}></a>
+                                <div class="card-body">
+                                    <p class="card-text text-truncate"><a class="text-info" href="{item.href}" title="{item.title}">{item.title}</a></p>
+                                </div>
+                            </div>
+                        </div>
+                        {endloop}
+                        {endexist}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-3 mt-3">
+            <div class="card">
+                <div class="card-header py-2 bg-darkblue">
+                    热门阅读
+                </div>
+                <div class="card-body p-2">
+                    <ul class="list-group">
+                        {loop name="popular" item="item" key="k" offset=0 len=10}
+                        <li class="list-group-item px-0 border-0 py-2 text-truncate">
+                            <span class="badge {if k < 3}badge-danger{else}badge-light text-secondary{endif}">{=k+1}</span>
+                            <a class="text-info" href="{item.href}" title="{item.title}">{item.title}</a>
+                        </li>
+                        {endloop}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-12 col-md-3 mt-3">
+            <div class="card">
+                <div class="card-header py-2 bg-darkblue">
+                    软件下载
+                </div>
+                <div class="card-body py-0">
+                    <ul class="list-group list-group-flush">
+                        {exist yanzicms.download}
+                        {loop name="yanzicms.download" item="item" key="k" offset=0 len=4}
+                        <li class="list-group-item px-0 py-3">
+                            <div class="text-truncate">
+                                <a class="text-info font-weight-bold" href="{item.href}">{item.title}</a>
+                            </div>
+                            <small class="text-secondary">
+                                {item.summary|substring(32)}
+                            </small>
+                        </li>
+                        {endloop}
+                        {endexist}
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-6 mt-3">
+            <div class="card">
+                <div class="card-header py-2 bg-darkblue">
+                    精彩资讯
+                </div>
+                <div class="card-body p-2">
+                    <div class="row">
+                        <div class="col-12 col-md-6">
+                            <ul class="list-group">
+                                {exist yanzicms.domestic}
+                                {loop name="yanzicms.domestic" item="item" key="k" offset=0 len=9}
+                                {if k == 0}
+                                <li class="list-group-item px-0 border-0 py-3">
+                                    <div class="text-truncate bg-light p-2">
+                                        <a class="text-info" href="{item.href}" title="{item.title}">{item.title}</a>
+                                    </div>
+                                    <small class="text-secondary">{item.summary|substring(55)}</small>
+                                </li>
+                                {else}
+                                <li class="list-group-item px-0 border-0 py-1 text-truncate">
+                                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-dot" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
+                                    </svg>
+                                    <a class="text-info" href="{item.href}" title="{item.title}">{item.title}</a>
+                                </li>
+                                {endif}
+                                {endloop}
+                                {endexist}
+                            </ul>
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <ul class="list-group">
+                                {exist yanzicms.international}
+                                {loop name="yanzicms.international" item="item" key="k" offset=0 len=9}
+                                {if k == 0}
+                                <li class="list-group-item px-0 border-0 py-3">
+                                    <div class="text-truncate bg-light p-2">
+                                        <a class="text-info" href="{item.href}" title="{item.title}">{item.title}</a>
+                                    </div>
+                                    <small class="text-secondary">{item.summary|substring(55)}</small>
+                                </li>
+                                {else}
+                                <li class="list-group-item px-0 border-0 py-1 text-truncate">
+                                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-dot" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
+                                    </svg>
+                                    <a class="text-info" href="{item.href}" title="{item.title}">{item.title}</a>
+                                </li>
+                                {endif}
+                                {endloop}
+                                {endexist}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-3 mt-3">
+            <div class="card">
+                <div class="card-header py-2 bg-darkblue">
+                    热评内容
+                </div>
+                <div class="card-body p-2">
+                    <ul class="list-group">
+                        {loop name="hot" item="item" key="k" offset=0 len=10}
+                        <li class="list-group-item px-0 border-0 py-2 text-truncate">
+                            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-dot" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
+                            </svg>
+                            <a class="text-info" href="{item.href}" title="{item.title}">{item.title}</a>
+                        </li>
+                        {endloop}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{exist links.home}
+<div class="container">
+    <div class="row">
+        <div class="col-12 mt-3">
+            <div class="card">
+                <div class="card-header py-2 bg-darkblue">
+                    友情链接
+                </div>
+                <div class="card-body p-2">
+                    <ul class="nav">
+                        {loop name="links.home" item="item"}
+                        <li class="nav-item">
+                            {if item.image != ''}
+                            <a class="nav-link" href="{item.href}"><img src="{domain}{item.image}" height="50"></a>
+                            {else}
+                            <a class="nav-link text-info" href="{item.href}">{item.name}</a>
+                            {endif}
+                        </li>
+                        {endloop}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{endexist}
+{include footer}

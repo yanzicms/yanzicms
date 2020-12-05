@@ -1,0 +1,36 @@
+{include headers}
+<div class="mb-3">
+    <small class="form-text text-muted">{=lang('Items marked with * are required')}</small>
+</div>
+<form>
+    <div class="form-group">
+        <label for="name">{=lang('Name')} *</label>
+        <input type="text" class="form-control" value="{slidegroup.name}" name="name" id="name">
+    </div>
+    <div class="form-group">
+        <label for="alias">{=lang('Alias')} *</label>
+        <input type="text" class="form-control" value="{slidegroup.alias}" name="alias" id="alias">
+        <small class="form-text text-muted">{=lang('The alias must start with a letter and can only use letters, numbers and underscores')}</small>
+    </div>
+    <div class="form-group">
+        <label for="width">{=lang('Width')} *</label>
+        <input type="number" min="0" step="1" class="form-control" value="{slidegroup.width}" name="width" id="width">
+    </div>
+    <div class="form-group">
+        <label for="height">{=lang('Height')} *</label>
+        <input type="number" min="0" step="1" class="form-control" value="{slidegroup.height}" name="height" id="height">
+    </div>
+    <div class="form-group">
+        <label for="description">{=lang('Description')}</label>
+        <textarea class="form-control" name="description" id="description" rows="4">{slidegroup.description}</textarea>
+    </div>
+    <div class="text-center">
+        <input type="hidden" name="id" value="{slidegroup.id}">
+        <button type="button" class="btn btn-outline-info submit">{=lang('Submit')}
+            <div class="spinner-border spinner-border-sm text-secondary d-none">
+                <span class="sr-only">Loading...</span>
+            </div>
+        </button>
+    </div>
+</form>
+{include footers}

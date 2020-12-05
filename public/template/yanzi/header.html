@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>{title}{if subtitle != ''}-{subtitle}{endif}</title>
+    <link rel="icon" href="{if icon != ''}{domain}{icon}{else}{domain}frontend/img/favicon.ico{endif}">
+    <link rel="stylesheet" href="{domain}frontend/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{domain}template/{template}/css/yanzi.css">
+</head>
+<body class="bg-gray">
+<div class="container d-none d-md-block">
+    <div class="row my-2">
+        <div class="col-md-6">
+            <img src="{if logo != ''}{domain}{logo}{else}{domain}frontend/img/yanzi.png{endif}" height="50">
+        </div>
+        <div class="col-md-6">
+            <form class="form-inline my-2 float-right" method="get" action="{=url('search')}">
+                <input class="form-control mr-sm-2" type="search" placeholder="关键字" name="word">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">搜索</button>
+            </form>
+        </div>
+    </div>
+</div>
+<nav class="navbar navbar-expand-lg navbar-light sticky-top bg-blue">
+    <a class="navbar-brand d-block d-md-none" href="{=url('index')}">{title}</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="container">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item pr-2{if active == 'index'} active{endif}">
+                    <a class="nav-link" href="{=url('index')}">首页</a>
+                </li>
+                {loop name="menu" item="item"}
+                {exist item.son}
+                <li class="nav-item dropdown px-2">
+                    <a class="nav-link dropdown-toggle{if item.active == 1} active{endif}" href="{item.href}" data-toggle="dropdown">
+                        {item.icon} {item.name}
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        {loop name="item.son" item="sitem"}
+                        <a class="dropdown-item{if sitem.active == 1} active{endif}" href="{sitem.href}">{sitem.icon} {sitem.name}</a>
+                        {endloop}
+                    </div>
+                </li>
+                {else}
+                <li class="nav-item px-2{if item.active == 1} active{endif}">
+                    <a class="nav-link" href="{item.href}">{item.icon} {item.name}</a>
+                </li>
+                {endexist}
+                {endloop}
+                <li class="nav-item px-2{if active == 'message'} active{endif}">
+                    <a class="nav-link" href="{=url('message')}">留言</a>
+                </li>
+                {if logged != 1}
+                <li class="nav-item pl-2">
+                    <a class="nav-link" href="{=url('login')}">登录</a>
+                </li>
+                {else}
+                <li class="nav-item pl-2">
+                    <a class="nav-link" href="{=url('user_center/index')}">用户中心</a>
+                </li>
+                <li class="nav-item pl-2">
+                    <a class="nav-link" href="{=url('logout')}">退出</a>
+                </li>
+                {endif}
+            </ul>
+        </div>
+    </div>
+</nav>
