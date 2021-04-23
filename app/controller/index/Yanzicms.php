@@ -306,7 +306,6 @@ class Yanzicms
         if($hasbelong){
             $arr['belong'] = $this->getBelong($arr['belong'], $arr['aid'], $arr['belongalias']);
         }
-        unset($arr['alias']);
     }
     protected function slide()
     {
